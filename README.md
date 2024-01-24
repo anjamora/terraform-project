@@ -7,9 +7,6 @@ This Terraform project sets up the infrastructure for an AWS environment, includ
 - [Prerequisites](#prerequisites)
 - [Setting Up Terraform Backend](#setting-up-terraform-backend)
 - [Building the Infrastructure](#building-the-infrastructure)
-- [Terraform Modules](#terraform-modules)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
@@ -26,41 +23,56 @@ Ensure you have the following prerequisites before running Terraform:
 - [Terraform](https://www.terraform.io/downloads.html) installed on your machine
 - AWS CLI configured with the necessary credentials
 
+Certainly! Based on your description, let me provide a concise set of instructions to complement the existing readme file:
+
+---
+
 ## Setting Up Terraform Backend
 
-1. Create an S3 bucket to serve as the backend for Terraform state.
-2. Uncomment the following code in `tf-backend/main.tf` after creating the S3 bucket:
+1. **Build Terraform Backend S3**:
+   - Navigate to the `tf-backend` directory.
+   - Run the following commands to initialize and apply, building the S3 bucket for Terraform backend:
 
-```hcl
-# backend "s3" {
-#   bucket         = "your-s3-bucket-name"
-#   key            = "tf-backend/terraform.tfstate"
-#   region         = "your-region"
-#   encrypt        = true
-#   dynamodb_table = "tf-locking"
-# }
-```
+     ```bash
+     terraform init
+     terraform plan
+     terraform apply
+     ```
 
-Replace `"your-s3-bucket-name"` and `"your-region"` with the appropriate values.
+2. **Uncomment Backend Configuration**:
+   - After creating the S3 bucket, uncomment the backend configuration in `tf-backend/main.tf`.
+   - Replace `"your-s3-bucket-name"` and `"your-region"` with appropriate values.
 
-3. Bootstrap the Terraform backend by running the following commands in the `tf-backend` directory:
+     ```hcl
+     backend "s3" {
+       bucket         = "your-s3-bucket-name"
+       key            = "tf-backend/terraform.tfstate"
+       region         = "your-region"
+       encrypt        = true
+       dynamodb_table = "tf-locking"
+     }
+     ```
 
-```bash
-terraform init
-terraform apply
-```
+3. **Bootstrap Terraform Backend**:
+   - Run the following commands in the `tf-backend` directory:
+
+     ```bash
+     terraform init
+     terraform plan
+     terraform apply
+     ```
 
 ## Building the Infrastructure
 
-1. In the root directory, run the following commands to initialize and apply the Terraform configurations:
+1. **Initialize and Apply Configurations**:
+   - In the app directory, run the following commands to initialize and apply Terraform configurations:
 
-```bash
-terraform init
-terraform apply
-```
+     ```bash
+     terraform init
+     terraform plan
+     terraform apply
+     ```
 
-2. Review the changes and confirm by entering `yes` when prompted.
+2. **Review and Confirm**:
+   - Review the proposed changes and confirm by entering `yes` when prompted.
 
-## Terraform Modules
-
-This project uses a module named `app-module` to organize and manage specific configurations. The module is located in the `modules` directory.
