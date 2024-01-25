@@ -97,5 +97,5 @@ jobs:
         check-latest: true
 
     - name: Terratest Execution
-      working-directory: infrastructure/tests/terratest/
+      working-directory: tests/terratest/
       run: go test . -v timeout 10m
