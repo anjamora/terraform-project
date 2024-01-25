@@ -76,3 +76,16 @@ Certainly! Based on your description, let me provide a concise set of instructio
 2. **Review and Confirm**:
    - Review the proposed changes and confirm by entering `yes` when prompted.
 
+
+## Continuous Integration with GitHub Actions
+
+This repository leverages GitHub Actions to automate the continuous integration (CI) process for Terraform deployments. The CI workflow is triggered on both push events to the "master" branch and pull requests. The primary objectives of this workflow include:
+
+- **Terraform Formatting Check:** Ensures that all Terraform configuration files adhere to a canonical format using `terraform fmt`.
+
+- **Terraform Initialization:** Initializes the Terraform working directory, creating initial files, loading remote state, and downloading modules.
+
+- **Terraform Plan Generation:** Generates an execution plan for Terraform using `terraform plan`.
+
+- **Terratest Execution:** Validates Terraform code using Terratest, a Go library for testing Terraform. The tests are executed with a timeout of 10 minutes.
+
